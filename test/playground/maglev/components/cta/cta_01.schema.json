@@ -1,0 +1,27 @@
+{
+  "id": "cta_01",
+  "name": "CTA #1",
+  "category": "cta",
+  "site_scoped": false,
+  "settings": [
+    {
+      "id": "title",
+      "label": "Title",
+      "type": "text"      
+    },    
+    {
+      "id": "body",
+      "label": "Body",
+      "type": "text",
+      "html": true,
+      "line_break": false,
+      "nb_rows": 5
+    },  
+    {
+      "id": "background_image",
+      "label": "Background image",
+      "type": "image"
+    }     
+  ],
+  "blocks": []
+}

@@ -1,0 +1,82 @@
+{
+  "name": "maglevcms-cli",
+  "version": "1.0.0",
+  "description": "CLI for the Maglev page builder",
+  "author": "Didier Lafforgue @did",
+  "bin": {
+    "maglevcms": "./bin/run"
+  },
+  "homepage": "https://github.com/did/https://github.com/maglevhq/maglev-js-cli",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "repository": "did/https://github.com/maglevhq/maglev-js-cli",
+  "files": [
+    "/bin",
+    "/dist",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json"
+  ],
+  "dependencies": {
+    "@oclif/core": "^1.19.1",
+    "@oclif/plugin-help": "^5",
+    "@oclif/plugin-plugins": "^2.1.4",
+    "ajv": "^8.11.0",
+    "axios": "^1.0.0",
+    "fs-extra": "^10.1.0",
+    "glob": "^8.0.3",
+    "klaw": "^4.0.1",
+    "klaw-sync": "^6.0.0",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "@oclif/test": "^2.2.4",
+    "@types/chai": "^4",
+    "@types/fs-extra": "^9.0.13",
+    "@types/klaw": "^3.0.3",
+    "@types/klaw-sync": "^6.0.1",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "^16.11.68",
+    "chai": "^4",
+    "eslint": "^7.32.0",
+    "eslint-config-oclif": "^4",
+    "eslint-config-oclif-typescript": "^1.0.3",
+    "mocha": "^9",
+    "oclif": "^3",
+    "shx": "^0.3.3",
+    "ts-node": "^10.9.1",
+    "tslib": "^2.3.1",
+    "typescript": "^4.8.4"
+  },
+  "oclif": {
+    "bin": "maglevcms",
+    "dirname": "maglevcms",
+    "commands": "./dist/commands",
+    "plugins": [
+      "@oclif/plugin-help",
+      "@oclif/plugin-plugins"
+    ],
+    "topicSeparator": " ",
+    "topics": {
+      "hello": {
+        "description": "Say hello to the world and others"
+      }
+    }
+  },
+  "scripts": {
+    "build": "shx rm -rf dist && tsc -b",
+    "lint": "eslint . --ext .ts --config .eslintrc",
+    "postpack": "shx rm -f oclif.manifest.json",
+    "posttest": "yarn lint",
+    "prepack": "yarn build && oclif manifest && oclif readme",
+    "test": "mocha --forbid-only \"test/**/*.test.ts\"",
+    "version": "oclif readme && git add README.md"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "bugs": "https://github.com/did/https://github.com/maglevhq/maglev-js-cli/issues",
+  "keywords": [
+    "oclif"
+  ],
+  "types": "dist/index.d.ts"
+}

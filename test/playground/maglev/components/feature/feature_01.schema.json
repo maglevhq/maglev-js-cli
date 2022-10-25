@@ -1,0 +1,50 @@
+{
+  "id": "feature_01",
+  "name": "Content with USPs Grid",
+  "category": "feature",
+  "settings": [
+    {
+      "label": "Title",
+      "id": "title",
+      "type": "text",
+      "default": "What makes us special"
+    },
+    {
+      "label": "Body",
+      "id": "body",
+      "type": "text",
+      "html": true,
+      "line_break": true,
+      "nb_rows": 5,
+      "default": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat dolores iure fugit totam iste obcaecati. Consequatur ipsa quod ipsum sequi culpa delectus, cumque id tenetur quibusdam, quos fuga minima."
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Feature",
+      "type": "feature_item",
+      "settings": [
+        {
+          "label": "Name",
+          "id": "name",
+          "type": "text",
+          "default": "Lorem, ipsum dolor."
+        },
+        {
+          "label": "Icon",
+          "id": "icon",
+          "type": "icon",
+          "default": "ri-flask-line"
+        },
+        {
+          "label": "Description",
+          "id": "description",
+          "type": "text",
+          "nb_rows": 4,
+          "default": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Error cumque tempore est ab possimus quisquam reiciendis tempora animi! Quaerat, saepe?"
+        }
+      ]
+    }
+  ],
+  "blocks_label": "List of features"  
+}

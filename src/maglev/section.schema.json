@@ -1,0 +1,313 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Maglev Section Schema",
+  "description": "JSON Schema definition for the Maglev Theme",
+  "type": "object",
+  "properties": {
+    "id": {
+      "title": "Must match the template filename",
+      "type": "string",
+      "pattern": "^[a-zA-Z][a-z0-9_]*$",
+      "minLength": 3
+    },
+    "name": {
+      "title": "Displayed in the Editor UI",
+      "type": "string",
+      "minLength": 3
+    },
+    "category": {
+      "title": "Id of a theme category",
+      "type": "string",
+      "pattern": "^[a-zA-Z][a-z0-9_]*$",
+      "minLength": 3
+    },
+    "site_scoped": {
+      "title": "A section might have the same content all over the site, like a menu or a footer for instance.",
+      "type": "boolean",
+      "default": false
+    },
+    "insert_button": {
+      "title": "Display or not the button to insert a new section after this one",
+      "type": "boolean",
+      "default": true
+    },
+    "insert_at": {
+      "title": "Insert this section at the top or the bottom of the page",
+      "enum": ["top", "bottom", null],
+      "default": null
+    },
+    "singleton": {
+      "title": "One single instance per page?",
+      "type": "boolean",
+      "default": "false"
+    },
+    "settings": {
+      "title": "Settings of the section",
+      "type": "array",
+      "items": { "$ref": "#/definitions/settings" },
+      "default": []
+    },
+    "blocks": {
+      "title": "Block types",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "title": "Name of this block type (displayed in the Editor UI)",
+            "type": "string"
+          },
+          "type": {
+            "title": "Type (acts as an identifier)",
+            "type": "string",
+            "pattern": "^[a-zA-Z][a-z0-9_]*$"
+          },
+          "accept": {
+            "title": "If tree presentation, allow only some type of blocks as children",
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "root": {
+            "title": "If tree presentation, tell if this type of block can only be inserted at the root",
+            "type": "boolean"
+          },
+          "settings": {
+            "title": "Settings of the section",
+            "type": "array",
+            "items": { "$ref": "#/definitions/settings" },
+            "default": []
+          }        
+        },
+        "additionalProperties": false
+      },
+      "default": []
+    },
+    "blocks_label": {
+      "title": "Displayed in the Editor UI (instead of the default Content label)",
+      "type": "string"
+    },
+    "blocks_presentation": {
+      "title": "By default, blocks are presented as a list in the Editor UI. Tree presentation (nested blocks) is also possible.",
+      "enum": ["list", "tree"],
+      "default": "list"
+    }
+  },
+  "additionalProperties": false,
+  "required": ["id", "name", "category", "settings", "blocks"],
+  "definitions": {
+    "settings": {
+      "oneOf": [
+        { "$ref": "#/definitions/textSetting" },
+        { "$ref": "#/definitions/colorSetting" },
+        { "$ref": "#/definitions/selectSetting" },
+        { "$ref": "#/definitions/linkSetting" },
+        { "$ref": "#/definitions/otherSetting" }
+      ]
+    },
+
+    "linkSetting": {
+      "title": "Link type",
+      "type": "object",
+      "properties": {
+        "id": { 
+          "title": "Used in the HTML template. Example: title, body, background_image", 
+          "type": "string",
+          "pattern": "^[a-zA-Z][a-z0-9_]*$"
+        },
+        "label": {
+          "title": "Displayed in the Editor UI",
+          "type": "string"
+        },
+        "type": { "const": "link" },
+        "with_text": {
+          "title": "If enabled, include also an editable text field",
+          "type": "boolean",
+          "default": "false"
+        },
+        "advanced": {
+          "title": "If enabled, the setting will included in the Advanced tab in the Editor UI",
+          "type": "boolean",
+          "default": false
+        },
+        "if": {
+          "title": "Display the setting in the Editor UI only if the value of the if setting is true",
+          "type": "string"
+        },
+        "default": {
+          "title": "Default value",
+          "type": "object",
+          "properties": {
+            "href": { "type": "string" },
+            "text": { "type": "string" }
+          }
+        }        
+      },
+      "required": ["id", "label", "type"],
+      "additionalProperties": false
+    },
+
+    "otherSetting": {
+      "title": "Other type",
+      "type": "object",
+      "properties": {
+        "id": { 
+          "title": "Used in the HTML template. Example: title, body, background_image", 
+          "type": "string",
+          "pattern": "^[a-zA-Z][a-z0-9_]*$"
+        },
+        "label": {
+          "title": "Displayed in the Editor UI",
+          "type": "string"
+        },
+        "type": { "enum": ["image", "link", "checkbox", "icon"] },
+        "advanced": {
+          "title": "If enabled, the setting will included in the Advanced tab in the Editor UI",
+          "type": "boolean",
+          "default": false
+        },
+        "if": {
+          "title": "Display the setting in the Editor UI only if the value of the if setting is true",
+          "type": "string"
+        },
+        "default": {
+          "title": "Default value",
+          "type": ["object", "string"]
+        }        
+      },
+      "required": ["id", "label", "type"],
+      "additionalProperties": false
+    },
+
+    "selectSetting": {
+      "title": "Select type",
+      "type": "object",
+      "properties": {
+        "id": { 
+          "title": "Used in the HTML template. Example: title, body, background_image", 
+          "type": "string",
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_]*$"
+        },
+        "label": {
+          "title": "Displayed in the Editor UI",
+          "type": "string"
+        },
+        "type": { "enum": ["select", "radio"] },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "title": "Title of the option (displayed in the Editor UI)",
+                "type": "string"
+              },
+              "value": {
+                "title": "Value of the option (used in the HTML template)",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "advanced": {
+          "title": "If enabled, the setting will included in the Advanced tab in the Editor UI",
+          "type": "boolean",
+          "default": false
+        },
+        "if": {
+          "title": "Display the setting in the Editor UI only if the value of the if setting is true",
+          "type": "string"
+        },
+        "default": {
+          "title": "Default value",
+          "type": "string"
+        }        
+      },
+      "required": ["id", "label", "type"],
+      "additionalProperties": false
+    },
+
+    "colorSetting": {
+      "title": "Color type",
+      "type": "object",
+      "properties": {
+        "id": { 
+          "title": "Used in the HTML template. Example: title, body, background_image", 
+          "type": "string",
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_]*$"
+        },
+        "label": {
+          "title": "Displayed in the Editor UI",
+          "type": "string"
+        },
+        "type": { "const": "color" },
+        "presets": {
+          "title": "List of hexadecimal colors (or CSS variable)",
+          "type": "array",
+          "items": { "type": "string" }                  
+        },
+        "advanced": {
+          "title": "If enabled, the setting will included in the Advanced tab in the Editor UI",
+          "type": "boolean",
+          "default": false
+        },
+        "if": {
+          "title": "Display the setting in the Editor UI only if the value of the if setting is true",
+          "type": "string"
+        },
+        "default": {
+          "title": "Default value",
+          "type": "string"
+        }
+      },
+      "required": ["id", "label", "type"],
+      "additionalProperties": false
+    },    
+
+    "textSetting": {
+      "title": "Text type",
+      "type": "object",
+      "properties": {
+        "id": { 
+          "title": "Used in the HTML template. Example: title, body, background_image", 
+          "type": "string",
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_]*$"
+        },
+        "label": {
+          "title": "Displayed in the Editor UI",
+          "type": "string"
+        },
+        "type": { "const": "text" },
+        "html": {
+          "title": "Display the rich text editor toolbar",
+          "type": "boolean",
+          "default": false
+        },
+        "line_break": {
+          "title": "Use a <br/> instead of new parapraph. Only used if the html property is true",
+          "type": "boolean",
+          "default": false
+        },
+        "nb_rows": {
+          "title": "Number of rows in the form input",
+          "type": "number",
+          "default": 3
+        },
+        "advanced": {
+          "title": "If enabled, the setting will included in the Advanced tab in the Editor UI",
+          "type": "boolean",
+          "default": false
+        },
+        "if": {
+          "title": "Display the setting in the Editor UI only if the value of the if setting is true",
+          "type": "string"
+        },
+        "default": {
+          "title": "Default value",
+          "type": "string"
+        }        
+      },
+      "required": ["id", "label", "type"],
+      "additionalProperties": false
+    }
+  }  
+}
