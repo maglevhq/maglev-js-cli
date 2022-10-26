@@ -26,6 +26,7 @@
     "glob": "^8.0.3",
     "klaw": "^4.0.1",
     "klaw-sync": "^6.0.0",
+    "maglevcms-client": "file:../maglev-client",
     "path": "^0.12.7"
   },
   "devDependencies": {

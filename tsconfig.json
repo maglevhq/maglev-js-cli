@@ -8,9 +8,14 @@
     "strict": true,
     "target": "es2019",
     "resolveJsonModule": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "my-lib": ["node_modules/maglevcms-client/src"],
+      "my-lib/*": ["node_modules/maglevcms-client/src/*"]
+    }    
   },
   "include": [
     "src/**/*"
-  ]
+  ],  
 }

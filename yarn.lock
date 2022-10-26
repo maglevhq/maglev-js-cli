@@ -3342,6 +3342,9 @@ lru-cache@^7.7.1:
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-7.13.2.tgz#bb5d3f1deea3f3a7a35c1c44345566a612e09cd0"
   integrity sha512-VJL3nIpA79TodY/ctmZEfhASgqekbT574/c4j3jn4bKXbSCnTTCH/KltZyvL2GlV+tGSMtsWyem8DCX7qKTMBA==
 
+"maglevcms-client@file:../maglev-client":
+  version "1.0.0"
+
 make-dir@^3.0.0:
   version "3.1.0"
   resolved "https://registry.npmjs.org/make-dir/-/make-dir-3.1.0.tgz"

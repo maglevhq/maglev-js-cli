@@ -9,3 +9,5 @@ node_modules
 oclif.manifest.json
 /test/playground/maglev/section-mapping.ts
 /test/playground/maglev/types.ts
+TODO.md
+.DS_Store
