@@ -17,7 +17,7 @@ export default class Sync extends Command {
     // flag with a value (-r, --apiRootPath=VALUE)
     apiRootPath: Flags.string({char: 'r', description: 'Path to the API (/maglev by default)'}),
     // flag with a value (-a, --apiKey=VALUE)
-    apiKey: Flags.string({char: 'a', description: 'Api key given by the Maglev server'}),
+    apiKey: Flags.string({char: 'a', description: 'API key given by the Maglev server'}),
   }
 
   public async run(): Promise<void> {
