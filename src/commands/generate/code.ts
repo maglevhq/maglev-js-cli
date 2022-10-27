@@ -1,11 +1,11 @@
 import {Command, Flags} from '@oclif/core'
 import path = require('path')
 import fs = require('fs')
-import {camelize} from '../utils'
-import {getSectionDefinitions} from '../concerns/loaders'
+import {camelize} from '../../utils'
+import {getSectionDefinitions} from '../../concerns/loaders'
 import {types as CoreTypes} from 'maglevcms-client'
 
-export default class Codegen extends Command {
+export default class Code extends Command {
   static description = 'Generate the Typescript types from the Section definitions'
 
   static examples = [
@@ -18,7 +18,7 @@ export default class Codegen extends Command {
   }
 
   public async run(): Promise<void> {
-    const {flags} = await this.parse(Codegen)
+    const {flags} = await this.parse(Code)
     this.log("👋 Hi! We're going to generate the types for your sections:\n")
     try {
       await this.codegen(flags.path || process.cwd())

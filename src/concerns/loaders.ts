@@ -12,11 +12,12 @@ const getSectionSchemaFiles = async (rootPath: string): Promise<string[]> => {
   })
 }
 
-const getTheme = async (rootPath: string): Promise<CoreTypes.Theme> => {
+const getTheme = async (rootPath: string, includeSections?: boolean): Promise<CoreTypes.Theme> => {
   const rawData = await fs.readFileSync(`${rootPath}/maglev/theme.json`, {encoding: 'utf8', flag: 'r'})
   const theme = buildTheme(rawData)
 
-  theme.sections = await getSectionDefinitions(rootPath)
+  if (includeSections)
+    theme.sections = await getSectionDefinitions(rootPath)
 
   return theme
 }

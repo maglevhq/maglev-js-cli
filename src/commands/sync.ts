@@ -43,7 +43,7 @@ export default class Sync extends Command {
 
   private async sync(rootPath: string, host: string, apiRootPath: string | undefined, apiKey: string): Promise<void> {
     const client = new Client(host, apiKey, apiRootPath)
-    const theme = await getTheme(rootPath)
+    const theme = await getTheme(rootPath, true)
     return client.updateTheme(theme)
   }
 }

@@ -1,7 +1,12 @@
 {
   "name": "My theme",
   "description": "A brand new theme",
-  "section_categories": [],
+  "section_categories": [
+    {
+      "id": "call_to_action",
+      "name": "Call to Action"
+    }
+  ],
   "style_settings": [],
   "icons": []
 }

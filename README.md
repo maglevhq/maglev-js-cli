@@ -11,7 +11,8 @@ yarn add maglevcms-cli -D
 <!-- commands -->
 
 - [`maglevcms init PATH`](#maglevcms-init-path)
-- [`maglevcms codegen`](#maglevcms-codegen)
+- [`maglevcms generate:category`](#maglevcms-generatecategory)
+- [`maglevcms generate:code`](#maglevcms-generatecode)
 - [`maglevcms sync`](#maglevcms-sync)
 
 ### `maglevcms init PATH`
@@ -29,20 +30,36 @@ EXAMPLES
   $ maglevcms init .
 ```
 
-### `maglevcms codegen`
+### `maglevcms generate:category`
 
-Generate the Typescript types for all the section definitions.
+Append a new category to the Maglev theme.
 
 ```
 USAGE
-  $ maglevcms codegen
+  $ maglevcms generate:category [ID] [NAME]
 
 FLAGS
   -p, --path     Path to the Javascript application (Nuxt, ...etc). Default to the current.
 
 EXAMPLES
-  $ maglevcms codegen
-  $ maglevcms codegen --path=~/sites/my-awesome-site
+  $ maglevcms generate:category call_to_action "Call to action"
+  $ maglevcms generate:category call_to_action "Call to action" --path=~/sites/my-awesome-site
+```
+
+### `maglevcms generate:code`
+
+Generate the Typescript types for all the section definitions and the mapping for the settings.
+
+```
+USAGE
+  $ maglevcms generate:code
+
+FLAGS
+  -p, --path     Path to the Javascript application (Nuxt, ...etc). Default to the current.
+
+EXAMPLES
+  $ maglevcms generate:code
+  $ maglevcms generate:code --path=~/sites/my-awesome-site
 ```
 
 ### `maglevcms sync`
@@ -62,12 +79,6 @@ FLAGS
 EXAMPLES
   $ maglevcms sync
   $ maglevcms sync --path=~/sites/my-awesome-site --host=http://localhost --apiRootPath=/api --apiKey=easyone
-```
-
-### category
-
-```
-npx maglecms category call_to_action
 ```
 
 ## Development

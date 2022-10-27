@@ -6,7 +6,7 @@ export default class Init extends Command {
   static description = 'Prepare your javascript application for the Maglev page builder'
 
   static examples = [
-    '<%= config.bin %> <%= command.id %>',
+    '<%= config.bin %> <%= command.id %> [PATH]',
   ]
 
   static args = [
@@ -24,6 +24,8 @@ MAGLEV_HOST=<host-of-your-maglev-server>
 MAGLEV_API_KEY=<api-key-given-by-your-maglev-server>
 MAGLEV_API_ROOT_PATH=/api
   `)
+
+    this.log('Next step → add your first section category with the maglevcms generate:category command.')
 
     this.log('💪 Once it\'s done you\'re good to generate your first section.\n')
   }
