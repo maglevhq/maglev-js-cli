@@ -1,6 +1,6 @@
 import {Command, Flags, CliUx} from '@oclif/core'
 import {Client} from 'maglevcms-client'
-import {getTheme} from './concerns/loaders'
+import {getTheme} from '../concerns/loaders'
 
 export default class Sync extends Command {
   static description = 'Synchronize the theme and its sections (definitions) to the Maglev server'
@@ -24,6 +24,7 @@ export default class Sync extends Command {
     const {flags} = await this.parse(Sync)
     const host = flags.host || process.env.MAGLEV_HOST
     const apiKey = flags.apiKey || process.env.MAGLEV_API_KEY
+    const apiRootPath = flags.apiRootPath || process.env.MAGLEV_API_ROOT_PATH
 
     console.log(host, apiKey, flags.apiRootPath)
 
@@ -34,7 +35,7 @@ export default class Sync extends Command {
 
     this.log("👋 Hi! We're going to send the theme and the sections definitions to the Maglev server:\n")
     CliUx.ux.action.start('Sending the theme to the Maglev server')
-    await this.sync(flags.path || process.cwd(), host, flags.apiRootPath, apiKey)
+    await this.sync(flags.path || process.cwd(), host, apiRootPath, apiKey)
     CliUx.ux.action.stop()
 
     this.log('\n💪 The theme and the sections have been synchronized.')

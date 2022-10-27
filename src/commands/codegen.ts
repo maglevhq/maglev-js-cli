@@ -2,7 +2,7 @@ import {Command, Flags} from '@oclif/core'
 import path = require('path')
 import fs = require('fs')
 import {camelize} from '../utils'
-import {getSectionDefinitions} from './concerns/loaders'
+import {getSectionDefinitions} from '../concerns/loaders'
 import {types as CoreTypes} from 'maglevcms-client'
 
 export default class Codegen extends Command {
